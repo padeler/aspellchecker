@@ -22,6 +22,6 @@ public class ASpellCheckerSettingsFragment extends PreferenceFragment
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        addPreferencesFromResource(R.xml.spell_checker_settings);
+        addPreferencesFromResource(R.xml.prefs);
     }
 }

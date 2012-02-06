@@ -23,7 +23,7 @@ public class ASpell
 	{
 		Log.d(TAG, "ASpell Speller Initializing....");
 		
-		boolean res = initialize(dataDir, "el");
+		boolean res = initialize(dataDir, locale);
 		Log.d(TAG, "ASpell Speller Initialized ("+res+")");
 	}
 	
