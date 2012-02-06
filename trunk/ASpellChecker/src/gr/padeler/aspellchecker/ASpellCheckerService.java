@@ -11,7 +11,9 @@ import java.io.IOError;
 import java.io.IOException;
 import java.io.InputStream;
 
+import android.content.SharedPreferences;
 import android.content.res.AssetManager;
+import android.preference.PreferenceManager;
 import android.service.textservice.SpellCheckerService;
 import android.util.Log;
 import android.view.textservice.SuggestionsInfo;
@@ -35,13 +37,14 @@ public class ASpellCheckerService extends SpellCheckerService
 		// check if the data files are correctly copied from the assets.
 		try{
 			String dataDir = checkAndUpdateDataFiles();
-			
-			return new ASpellCheckerSession(dataDir);
+			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+			String lang = prefs.getString("available_dicts", "el");
+			return new ASpellCheckerSession(dataDir,lang);
 		}catch(IOException e)
 		{
 			Log.e(TAG,"Failed to initialize ASpellCheckerService", e);
 		}
-		return new ASpellCheckerSession(""); // TODO Find a good way to gracefully fail. This will fail on ASpell initialization.
+		return new ASpellCheckerSession("","el"); // TODO Find a good way to gracefully fail. This will fail on ASpell initialization.
 	}
 	
 	private String checkAndUpdateDataFiles() throws IOException
@@ -88,9 +91,11 @@ public class ASpellCheckerService extends SpellCheckerService
 		private String mLocale;
 		private ASpell bridge;
 		private String dataDir;
+		private String lang;
 		
-		public ASpellCheckerSession(String dataDir)
+		public ASpellCheckerSession(String dataDir,String lang)
 		{
+			this.lang = lang;
 			this.dataDir = dataDir;
 		}
 
@@ -99,8 +104,8 @@ public class ASpellCheckerService extends SpellCheckerService
 		{
 			
 			mLocale = getLocale();
-			Log.d(TAG, "Creating ASpell Speller.");
-			bridge = new ASpell(dataDir,mLocale);
+			Log.d(TAG, "Creating ASpell Speller. DataDir: "+dataDir+" Lang: "+lang);
+			bridge = new ASpell(dataDir,lang);
 			
 		}
 		
