@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ASpellChecker</string>
+    <string name="test">Be awesome</string>
+    <string name="settings">ASpellChecker Settings</string>
+    <string name="subtype">WTF is subtype?</string>
+
+</resources>
