@@ -27,6 +27,6 @@ public class ASpell
 		Log.d(TAG, "ASpell Speller Initialized ("+res+")");
 	}
 	
-	public native String[] check(String logThis);
+	public native String[] check(String str);
 	public native boolean initialize(String dataDir, String locale);
 }
