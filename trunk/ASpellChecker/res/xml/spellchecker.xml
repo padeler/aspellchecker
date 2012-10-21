@@ -6,7 +6,6 @@
 <spell-checker xmlns:android="http://schemas.android.com/apk/res/android"
         android:label="@string/name"
         android:settingsActivity="gr.padeler.aspellchecker.ASpellCheckerActivity">
-    <subtype
-            android:label="@string/subtype"
-            android:subtypeLocale="en"  />
+    <subtype android:label="@string/subtype" android:subtypeLocale="el"  />
+<!--   <subtype android:label="@string/subtype" android:subtypeLocale="en"  />  --> 
 </spell-checker>
