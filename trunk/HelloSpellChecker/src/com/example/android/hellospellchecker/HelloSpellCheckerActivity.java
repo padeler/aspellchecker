@@ -27,6 +27,7 @@ import android.view.textservice.TextServicesManager;
 import android.view.textservice.SpellCheckerSession.SpellCheckerSessionListener;
 import android.widget.TextView;
 import java.lang.StringBuilder;
+import java.util.Locale;
 
 public class HelloSpellCheckerActivity extends Activity implements SpellCheckerSessionListener
 {
@@ -38,6 +39,7 @@ public class HelloSpellCheckerActivity extends Activity implements SpellCheckerS
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
+
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 		mMainView = (TextView) findViewById(R.id.main);
@@ -47,6 +49,8 @@ public class HelloSpellCheckerActivity extends Activity implements SpellCheckerS
 	public void onResume()
 	{
 		super.onResume();
+		Locale locale = new Locale("el");
+		Locale.setDefault(locale);
 		final TextServicesManager tsm = (TextServicesManager) getSystemService(Context.TEXT_SERVICES_MANAGER_SERVICE);
 		mScs = tsm.newSpellCheckerSession(null, null, this, true);
 		if (mScs != null)
